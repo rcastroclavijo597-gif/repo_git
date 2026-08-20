@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablas de Multiplicar (1 al 6)</title>
+  <style>
+    :root {
+      --bg-color: #f4f6f9;
+      --card-bg: #ffffff;
+      --primary-color: #2c3e50;
+      --accent-color: #3498db;
+      --text-color: #333333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .math-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .math-row:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tablas de Multiplicar del 1 al 6</h1>
+  <div class="grid-container" id="tables-container"></div>
+
+  <script>
+    const container = document.getElementById('tables-container');
+
+    for (let tableNum = 1; tableNum <= 6; tableNum++) {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      let rowsHTML = '';
+      for (let multiplier = 1; multiplier <= 10; multiplier++) {
+        const result = tableNum * multiplier;
+        rowsHTML += `
+          <div class="math-row">
+            <span>${tableNum} × ${multiplier}</span>
+            <span><strong>${result}</strong></span>
+          </div>
+        `;
+      }
+
+      card.innerHTML = `
+        <div class="card-header">Tabla del ${tableNum}</div>
+        <div class="card-body">${rowsHTML}</div>
+      `;
+
+      container.appendChild(card);
+    }
+  </script>
+
+</body>
+</html>
